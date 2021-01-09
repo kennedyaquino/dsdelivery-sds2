@@ -2,10 +2,7 @@ package com.br.dsdelivery.delivery.entities.dto;
 
 import com.br.dsdelivery.delivery.entities.Product;
 
-import java.io.Serializable;
-
-public class ProductDTO implements Serializable {
-
+public class ProductDTO {
     private Long id;
     private String name;
     private Double price;
@@ -13,14 +10,6 @@ public class ProductDTO implements Serializable {
     private String imageUri;
 
     public ProductDTO() {}
-
-    public ProductDTO(Long id, String name, Double price, String description, String imageUri) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.imageUri = imageUri;
-    }
 
     public ProductDTO(Product entity) {
         this.id = entity.getId();
