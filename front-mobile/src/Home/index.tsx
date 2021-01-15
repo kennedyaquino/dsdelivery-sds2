@@ -1,12 +1,19 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
+import Header from "../Header";
 
 export default function Home() {
-  const handleOnPress = () => {};
+  const navigation = useNavigation();
+
+  const handleOnPress = () => {
+    navigation.navigate("Orders");
+  };
 
   return (
     <>
+      <Header />
       <View style={styles.container}>
         <Image source={require("../assets/deliveryman.png")} />
         <Text style={styles.title}>
@@ -27,26 +34,26 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: "5%",
+    marginTop: "10%",
     alignItems: "center",
   },
   title: {
     color: "#263238",
-    fontSize: 26,
-    lineHeight: 35,
+    fontSize: 24,
+    lineHeight: 30,
     fontWeight: "bold",
-    marginTop: 31,
+    marginTop: 28,
     textAlign: "center",
   },
   subTitle: {
     color: "#9E9E9E",
-    fontSize: 16,
-    marginTop: 15,
-    lineHeight: 22,
+    fontSize: 14,
+    marginTop: 13,
+    lineHeight: 20,
     textAlign: "center",
   },
   footer: {
-    marginTop: "5%",
+    marginTop: "12%",
     alignItems: "center",
   },
   button: {
@@ -55,13 +62,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   buttonText: {
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingTop: 13,
+    paddingBottom: 13,
     paddingLeft: 50,
     paddingRight: 50,
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 16,
     color: "#FFF",
-    letterSpacing: -0.24,
+    letterSpacing: -0.22,
   },
 });
