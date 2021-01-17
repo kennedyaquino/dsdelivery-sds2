@@ -11,7 +11,7 @@
     <br>
   </div>
   <div align="center">
-    <img src="https://github.com/kennedyaquino/dsdelivery-sds2/tree/main/front-web/public/home-sds2.png" alt="dsdelivery" height="500" />
+    <img src="https://github.com/kennedyaquino/dsdelivery-sds2/blob/main/front-web/public/home-sds2.png" alt="dsdelivery" height="500" />
   </div>
   <div>
     <h2 id="projeto-1">💻 Projeto</h2>
