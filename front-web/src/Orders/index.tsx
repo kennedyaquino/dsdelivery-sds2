@@ -9,6 +9,7 @@ import ProductsList from "./ProductsList";
 import StepsHeader from "./StepsHeader";
 import "./style.css";
 import { OrderLocationData, Product } from "./types";
+import ReactLoading from "react-loading";
 
 function Orders() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -17,11 +18,17 @@ function Orders() {
   const totalPrice = selectedProducts.reduce((sum, item) => {
     return sum + item.price;
   }, 0);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchData = () => {
     fetchProducts()
       .then((response) => setProducts(response.data))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoading(false));
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   const handleSelectProduct = (product: Product) => {
@@ -56,23 +63,47 @@ function Orders() {
 
   return (
     <>
-      <div className="orders-container">
-        <StepsHeader />
-        <ProductsList
-          products={products}
-          onSelectProduct={handleSelectProduct}
-          selectedProducts={selectedProducts}
-        />
-        <OrderLocation
-          onChangeLocation={(location) => setOrderLocation(location)}
-        />
-        <OrderSummary
-          amount={selectedProducts.length}
-          totalPrice={totalPrice}
-          onSubmit={handleSubmit}
-        />
+      <div>
+        {isLoading ? (
+          <div>
+            <div className="order-loading-container">
+              <ReactLoading
+                type={"spin"}
+                color={"#DA5C5C"}
+                height={"5%"}
+                width={"5%"}
+              />
+            </div>
+            <div className="order-loading-text">
+              <h2>Buscando pedidos...</h2>
+            </div>
+          </div>
+        ) : (
+          <div className="orders-container">
+            <StepsHeader />
+            <ProductsList
+              products={products}
+              onSelectProduct={handleSelectProduct}
+              selectedProducts={selectedProducts}
+            />
+            <OrderLocation
+              onChangeLocation={(location) => setOrderLocation(location)}
+            />
+            <OrderSummary
+              amount={selectedProducts.length}
+              totalPrice={totalPrice}
+              onSubmit={handleSubmit}
+            />
+          </div>
+        )}
+        {isLoading ? (
+          <div className="order-footer-loading">
+            <Footer />
+          </div>
+        ) : (
+          <Footer />
+        )}
       </div>
-      <Footer />
     </>
   );
 }

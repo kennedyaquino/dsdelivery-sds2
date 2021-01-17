@@ -1,3 +1,20 @@
+.order-footer-loading {
+  margin-top: 16%;
+}
+
+.order-loading-container {
+  padding-top: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-loading-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .orders-container {
   background-color: var(--light-color);
 }
